@@ -1,3 +1,8 @@
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var Tanks;
 (function (Tanks) {
     var tank = null;
@@ -8,10 +13,10 @@ var Tanks;
     var targets = null;
     var power = 300;
     var powerText = null;
-    var cursors = null;
-    var fireButton = null;
-    var GameState = (function () {
+    var GameState = (function (_super) {
+        __extends(GameState, _super);
         function GameState() {
+            _super.apply(this, arguments);
         }
         GameState.prototype.init = function () {
             this.game.renderer.renderSession.roundPixels = true;
@@ -104,6 +109,6 @@ var Tanks;
             this.add.tween(this.camera).to({ x: 0 }, 1000, "Quint", true, 1000);
         };
         return GameState;
-    })();
+    })(Phaser.State);
     Tanks.GameState = GameState;
 })(Tanks || (Tanks = {}));

@@ -14,10 +14,10 @@ module Tanks {
   var power = 300;
   var powerText = null;
 
-  var cursors = null;
-  var fireButton = null;
+  export class GameState extends Phaser.State {
+    cursors: Phaser.CursorKeys;
+    fireButton: Phaser.Key;
 
-  export class GameState implements Phaser.State {
     init() {
       this.game.renderer.renderSession.roundPixels = true;
 
