@@ -203,7 +203,7 @@ PhaserGame.prototype = {
         color = 'rgba(255,0,0,0.3)';
       }
 
-      if (t === this.current) {
+      else if (t === this.current) {
         color = 'rgba(255,255,255,0.3)';
       }
 
