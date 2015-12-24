@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="tileset_by_zeo__by_zeo254-d6wlh1x" tilewidth="16" tileheight="16" margin="1">
+  <image source="tileset_by_zeo__by_zeo254-d6wlh1x.png" width="386" height="242"/>
+ </tileset>
+ <layer name="Livello tile 1" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJw7zcDAcIZEfBaILYC4BQt+DMQngfgPkfgUED8F4gAgDkTCIUjmPcVhFy77QepFGRkYxKBYnBHhXnLN0wWaoQfEjECsTwXzXIFmSELNpNS8h9A4AZnpBsTujIjwJNW839A4eYgj3kk1D2Ymrngnxzx84TpUzTuNI7zJNQ89H57CoQ6bedji/hFU/gQU41KHrh5b3MPwXyTz8KlDVg8AfLzEwg==
+  </data>
+ </layer>
+ <layer name="Livello tile 2" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAf1FKgl1TzRRkZGMTQsDgj+WbrAvWeA9LnofgCEOtTaN4zIK0HpJ8D6RdQ8zSAWJMMc0Hm/YOaB8Iw8xyA2JFM8/QYUc0zoCAs0c1jYKQsLNHNQ3frQJvnClTvhge74zCvGohrSLBHGGiOCB63TQbiKSSYpw00S4eCdI0OnIFmuVDRPFIBAN5uG7U=
+  </data>
+ </layer>
+</map>
