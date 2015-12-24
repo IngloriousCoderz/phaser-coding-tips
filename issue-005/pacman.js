@@ -1,5 +1,4 @@
 var game = new Phaser.Game(448, 496, Phaser.AUTO);
-
 var Pacman = function(game) {
 
   this.map = null;
