@@ -6,6 +6,7 @@ var PhaserGame = function() {
   this.facing = 'left';
   this.jumpTimer = 0;
   this.cursors = null;
+  this.midAir = false;
 };
 
 PhaserGame.prototype = {
@@ -14,7 +15,7 @@ PhaserGame.prototype = {
 
     this.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.physics.arcade.gravity.y = 800;
+    this.physics.arcade.gravity.y = 1869;
   },
 
   preload: function() {
@@ -43,7 +44,7 @@ PhaserGame.prototype = {
 
     this.platforms.setAll('body.allowGravity', false);
     this.platforms.setAll('body.immovable', true);
-    this.platforms.setAll('body.velocity.x', 100);
+    // this.platforms.setAll('body.velocity.x', 100);
 
     this.player = this.add.sprite(320, 432, 'dude');
 
@@ -51,6 +52,8 @@ PhaserGame.prototype = {
 
     this.player.body.collideWorldBounds = true;
     this.player.body.setSize(20, 32, 5, 16);
+    this.player.body.maxVelocity.x = 500;
+    this.player.body.maxVelocity.y = 5000;
 
     this.player.animations.add('left', [0, 1, 2, 3], 10, true);
     this.player.animations.add('turn', [4], 20, true);
@@ -69,29 +72,33 @@ PhaserGame.prototype = {
 
   setFriction: function(player, platform) {
     if (platform.key === 'ice-platform') {
-      player.body.x -= platform.body.x - platform.body.prev.x;
+      //player.body.x -= platform.body.x - platform.body.prev.x;
+      player.body.drag.x = 0;
     }
   },
 
   update: function() {
     this.platforms.forEach(this.wrapPlatform, this);
 
+    this.player.body.acceleration.x = 0;
+    this.player.body.drag.x = 2000;
+
     this.physics.arcade.collide(this.player, this.platforms, this.setFriction); //, null, this);
 
     //  Do this AFTER the collide check, or we won't have blocked/touching set
     var standing = this.player.body.blocked.down || this.player.body.touching.down;
-
-    this.player.body.velocity.x = 0;
+    var canJump = standing || this.midAir;
+    if (standing) this.midAir = false;
 
     if (this.cursors.left.isDown) {
-      this.player.body.velocity.x = -200;
+      this.player.body.acceleration.x = -1500;
 
       if (this.facing !== 'left') {
         this.player.play('left');
         this.facing = 'left';
       }
     } else if (this.cursors.right.isDown) {
-      this.player.body.velocity.x = 200;
+      this.player.body.acceleration.x = 1500;
 
       if (this.facing !== 'right') {
         this.player.play('right');
@@ -111,9 +118,9 @@ PhaserGame.prototype = {
       }
     }
 
-    if (standing && this.cursors.up.isDown && this.time.time > this.jumpTimer) {
-      this.player.body.velocity.y = -500;
-      this.jumpTimer = this.time.time + 750;
+    if (canJump && this.cursors.up.downDuration(5)) {
+      this.player.body.velocity.y = -700;
+      this.midAir = !this.midAir;
     }
   }
 };
