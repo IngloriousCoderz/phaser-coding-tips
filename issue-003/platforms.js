@@ -4,7 +4,6 @@ var PhaserGame = function() {
   this.player = null;
   this.platforms = null;
   this.facing = 'left';
-  this.jumpTimer = 0;
   this.cursors = null;
   this.midAir = false;
 };
@@ -44,7 +43,7 @@ PhaserGame.prototype = {
 
     this.platforms.setAll('body.allowGravity', false);
     this.platforms.setAll('body.immovable', true);
-    // this.platforms.setAll('body.velocity.x', 100);
+    this.platforms.setAll('body.velocity.x', 100);
 
     this.player = this.add.sprite(320, 432, 'dude');
 
@@ -72,7 +71,6 @@ PhaserGame.prototype = {
 
   setFriction: function(player, platform) {
     if (platform.key === 'ice-platform') {
-      //player.body.x -= platform.body.x - platform.body.prev.x;
       player.body.drag.x = 0;
     }
   },
